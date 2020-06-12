@@ -1,0 +1,29 @@
+.wrapper1 {
+            text-align: center;
+            margin-left:15%;
+               margin-right: 15%;
+            margin-top: 4%;
+            padding: 0;
+            display:grid;
+            grid-template-columns: 300px 300px 300px;
+            grid-gap: 20px;
+            background-color: white;
+            color: #444;
+        }
+
+        .box {
+            display: flex;
+            flex-direction:column;
+            background-color: white;
+            border: 1.5px solid #1D8348;
+            box-shadow: 0 14px 28px rgba(0, 250, 154,0.25), 0 10px 10px rgba(0, 250, 154,0.22);
+            color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 100%;
+        }
+        div.img{
+            text-align: center;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
