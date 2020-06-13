@@ -4,7 +4,7 @@
 <head>
     <title>onlineshop.kz</title>
     <!--<link rel="stylesheet" type="text/css" href="CSS.css">-->
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:600,900" rel="stylesheet">
     <link rel="shortcut icon" href="shop.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link rel = "icon" href = "shop.png" type = "image/x-icon">
-    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="CSS/header.css">
     <script type="text/javascript" src="functions.js"></script>
     <style>
         .wrapper1 {
@@ -104,3 +104,4 @@ foreach ($result as $row) {
 </body>
 </body>
 </html>
+
