@@ -1,5 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <title>onlineshop.kz</title>
+    <!--<link rel="stylesheet" type="text/css" href="CSS.css">-->
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway:600,900" rel="stylesheet">
+    <link rel="shortcut icon" href="shop.png" type="png">
+    <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Six+Caps&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Anton&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
+    <link rel = "icon" href = "shop.png" type = "image/x-icon">
+    <link rel="stylesheet" type="text/css" href="CSS/header.css">
+    <script type="text/javascript" src="functions.js"></script>
+</head>
+<header>
+    <div class="topnav">
+        <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"> Home</p></button>
+        <div class="dropdown">
+            <div id = "list">
+                <button class="dropbtn"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
+            <div class="dropdown-content">
+                <a href="drink.php"><img class ="img" src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px">Mixed</a>
+                <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
+                <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
+                <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
+                <a href="Fruits.php"><img src ="image/fruit.png" alt ="fruit" width ="15px" height ="15px">Fruits</a>
+                <a href="Vegetables.php"><img src ="image/vegan.png" alt ="Vegetables" width ="15px" height ="15px">Vegetables</a>
+                <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <div id = "list">
+                <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
+            <div class="dropdown-content">
+                <a href="#"><p>Email:onlineshop@mail.ru</p></a>
+                <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
+            </div>
+        </div>
+        <button class="log"><a href="login.php" class="logtext">LogIn</a><p class="sign">/</p><a href="registration.php" class="regtext">Register</a></button>
+        <form method="post" action="check.php">
+            <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
+            <input  type = "submit" class="sub" name = "submit" value ="&#128270;">
+        </form>
+        <div><a href="homepage.php" title="home page"><img src="image/homepage.png" class="homeimg"></a></div>
+        <div><a href="basket.php" title="Basket"><img src="image/basket.png" class="basimg"></a></div>
+    </div>
+
+    </div>
+</header>
+<hr style="color: black;">
+</header>
+</html>
 <?php
-include_once 'Bakkery.php';
 include_once 'database/authorization.php';
 session_start();
 $info="";
@@ -28,7 +84,7 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
         $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
         if(in_array($id,$array_keys)) {
             $status = "<div class='box' style='color:green;'>
- Product is already added to your cart!</div>";
+            Product is already added to your cart!</div>";
         } else {
             $_SESSION["shopping_cart"] = array_merge(
                 $_SESSION["shopping_cart"],
@@ -41,18 +97,19 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
 }
 $result = mysqli_query($link,"SELECT * FROM `product`");
 while($row = mysqli_fetch_assoc($result)){
-    echo "<div class='wrapper1'>
-    <div class='box1'>
+    echo "
+    <div class='wrapper1' style=' display:grid;grid-template-columns: 300px 300px 300px;grid-gap: 17px;'>
+    <div class='box1' style='display: flex;flex-direction:column; background-color: #239B56;color: #fff;border-radius: 5px;padding: 20px;
+    font-size: 100%;'>
     <form method='post' action=''>
     <input type='hidden' name='id' value=".$row['category_id']." />
-    <div class='imageAll' style='float:center'><img src='".$row['img']."' width='80%' height='60%'  />
+    <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='80%'></div>
     <div class='name'>".$row['product_name']."</div>
     <div class='price'>".$row['price']."tg</div>
     <button type='submit' class='buy'>Add to cart</button>
         </form>
     </div>
     </div>";
-    //echo $status;
 }
 mysqli_close($link);
 ?>
