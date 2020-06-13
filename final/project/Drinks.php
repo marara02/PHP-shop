@@ -76,7 +76,7 @@
             </div>
         </div>
         <button class="log"><a href="login.php" class="logtext">LogIn</a><p class="sign">/</p><a href="registration.php" class="regtext">Register</a></button>
-        <form method="post">
+        <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <button  type = "submit" class="sub" name = "submit" >&#128270;</button>
         </form>
