@@ -10,7 +10,7 @@
 body{
 }
 .form{
-    background-image: url("image/food.jpg");
+    background-image: url('image/food.jpg');
     width: 30%;
     height: inherit;
     border: 2px solid #1D8348;

@@ -17,7 +17,7 @@
                         id:$('#id').val()},
                     accepts: 'application/json; charset=utf-8',
                     success:function (data) {
-                        if(data.text === 'Ыuccess'){
+                        if(data.text === 'Success'){
                             window.location.href = "insertpage.php";
                             $('#info').text("Updated successfully");
                         }

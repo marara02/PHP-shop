@@ -17,6 +17,20 @@ input[type = "text"]:focus{
   box-shadow: 0 0 0 1px #7eb4ea inset, 0 1px 2px rgba(0,0,0,.2) inset, 0 0 4px rgba(35,146,243,.5);
   transition: .2s linear;
   }
+input[type = "number"]{
+    font-size:15px;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 1px 2px rgba(0,0,0,.2) inset, 0 -1px 0 rgba(0,0,0,.05) inset;
+}
+input[type = "number"]:hover{
+    box-shadow: 0 0 0 1px #2ECC71 inset, 0 1px 2px rgba(0,0,0,.2) inset;
+}
+input[type = "number"]:focus{
+    outline: none;
+    box-shadow: 0 0 0 1px #2ECC71 inset, 0 1px 2px rgba(0,0,0,.2) inset, 0 0 4px rgba(35,146,243,.5);
+    transition: .2s linear;
+}
 div.menu{
   background-color: #2ECC71;
   overflow: auto;
@@ -212,7 +226,7 @@ select{
 }
 .imageAll{
     width:100%;
-    height: 70%;
+    height: 66%;
     text-align: center;
     padding-left: 5px;
     padding-right: 5px;
@@ -232,6 +246,14 @@ select{
     border-radius: 10px;
     background-color: #FFD31D;
 }
+.wrapper1 .change{
+    cursor: pointer;
+    padding: 8px 40px;
+    margin-top: 10px;
+    font-size:20px;
+    border-radius: 10px;
+    background-color: orange;
+}
 .wrapper1 .new{
     text-transform: uppercase;
     cursor: pointer;
@@ -243,7 +265,7 @@ select{
 }
 .price{
     font-family: Apple Chancery, cursive;
-    font-size: 20px;
+    font-size: 17px;
     color: #2b580c;
 }
 .message_box .box{
@@ -253,10 +275,13 @@ select{
     font-weight: bold;
     color: #2b772e;
 }
+.table{
+    margin-left: 60px;
+}
 .table td {
     border-bottom: #F0F0F0 1px solid;
     padding: 10px;
-    margin-left: 30px;
+    margin-left: 60px;
 }
 .cart_div {
     float:right;

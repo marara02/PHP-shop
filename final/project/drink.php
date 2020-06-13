@@ -16,6 +16,7 @@
     <link rel = "icon" href = "shop.png" type = "image/x-icon">
     <link rel="stylesheet" type="text/css" href="CSS/header.css">
     <script type="text/javascript" src="functions.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" crossorigin="anonymous"></script>
 </head>
 <header>
     <div class="topnav">
@@ -49,7 +50,6 @@
         <div><a href="homepage.php" title="home page"><img src="image/homepage.png" class="homeimg"></a></div>
         <div><a href="basket.php" title="Basket"><img src="image/basket.png" class="basimg"></a></div>
     </div>
-
     </div>
 </header>
 <hr style="color: black;">
@@ -61,10 +61,10 @@ session_start();
 $info="";
 if (isset($_POST['id']) && $_POST['id']!=" "){
     $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `category_id`='$id'");
+    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`='$id'");
     $row = mysqli_fetch_assoc($result);
     $name = $row['product_name'];
-    $id = $row['category_id'];
+    $id = $row['product_id'];
     $price = $row['price'];
     $image = $row['img'];
 
@@ -79,18 +79,18 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
 
     if(empty($_SESSION["shopping_cart"])) {
         $_SESSION["shopping_cart"] = $cartArray;
-        $status = "<div class='box'>Product is added to your cart!</div>";
+        $info = "<div class='message_box'><div class='box'>Product is added to your cart!</div></div>";
     }else{
         $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
         if(in_array($id,$array_keys)) {
-            $status = "<div class='box' style='color:green;'>
-            Product is already added to your cart!</div>";
+            $info = "<div class='message_box'><div class='box'>
+            Product is already added to your cart!</div></div>";
         } else {
             $_SESSION["shopping_cart"] = array_merge(
                 $_SESSION["shopping_cart"],
                 $cartArray
             );
-            $status = "<div class='box'>Product is added to your cart!</div>";
+            $info = "<div class='message_box'><div class='box'>Product is added to your cart!</div></div>";
         }
 
     }
@@ -101,7 +101,7 @@ while($row = mysqli_fetch_assoc($result)){
     echo "
         <div class='box1' style='display: flex; flex-direction: column; background-color: #239B56; color: #fff; border-radius: 5px; padding: 20px; font-size: 80%;'>
             <form method='post' action=''>
-                <input type='hidden' name='id' value=".$row['category_id']." />
+                <input type='hidden' name='id' value=".$row['product_id']." />
                 <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='80%'></div>
                 <div class='name'>".$row['product_name']."</div>
                 <div class='price'>".$row['price']."tg</div>

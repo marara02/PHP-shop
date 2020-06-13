@@ -47,29 +47,15 @@
 
 <?php
 include 'Bakkery.php';
+include_once 'database/authorization.php';
 class bakery{
      public $type;
      public $cost;
-     public $recept;
 
-     public function __construct($type,$cost,$recept)
+     public function __construct($type,$cost)
      {
          $this->$type = $type;
          $this->$cost = $cost;
-         $this->$recept = $recept;
-       print '<div class ="main">';
-        print "<p><b>Bakery type:</b>$type</p>";
-        print "<p><b>Cost:</b>$cost</p>";
-        print "<p><b>Recept:</b>$recept</p>";
-        print '<br>';
-        print '<br>';
-        print '<form method ="post">';
-        print '<select name="Weight">' ;
-        for ($tempmin = 0;$tempmin <=4; $tempmin += 1){
-            print "<option>$tempmin</option>";}
-        print '</select>';
-        print '<a href ="drink.php"><input type="submit" name ="button" value ="Add to cart"></a></form>';
-        print '</div>';
      }
 
      public function __destruct()

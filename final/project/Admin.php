@@ -1,40 +1,6 @@
 <?php
-include_once 'authorization.php';
-session_start();
-$info="";
-if (isset($_POST['id']) && $_POST['id']!=" "){
-    $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `category_id`='$id'");
-    $row = mysqli_fetch_assoc($result);
-    $name = $row['product_name'];
-    $id = $row['category_id'];
-    $price = $row['price'];
+include_once 'database/authorization.php';
 
-    $cartArray = array(
-        $id=>array(
-            'name'=>$name,
-            'code'=>$id,
-            'price'=>$price,
-            'quantity'=>1)
-    );
-
-    if(empty($_SESSION["shopping_cart"])) {
-        $_SESSION["shopping_cart"] = $cartArray;
-        $status = "<div class='box'>Product is added to your cart!</div>";
-    }else{
-        $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
-        if(in_array($id,$array_keys)) {
-            $status = "<div class='box' style='color:green;'>
- Product is already added to your cart!</div>";
-        } else {
-            $_SESSION["shopping_cart"] = array_merge(
-                $_SESSION["shopping_cart"],
-                $cartArray
-            );
-            $status = "<div class='box'>Product is added to your cart!</div>";
-        }
-    }
-}
 $result = mysqli_query($link,"SELECT * FROM `product`");
 
 while($row = mysqli_fetch_assoc($result)){
@@ -64,7 +30,7 @@ mysqli_close($link);
 <head>
     <title>onlineshop.kz</title>
     <!--<link rel="stylesheet" type="text/css" href="CSS.css">-->
-    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="CSS/main.css">
     <link href="https://fonts.googleapis.com/css?family=Raleway:600,900" rel="stylesheet">
     <link rel="shortcut icon" href="shop.png" type="image/png">
     <link href="https://fonts.googleapis.com/css?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
@@ -74,9 +40,9 @@ mysqli_close($link);
     <link href="https://fonts.googleapis.com/css?family=Archivo+Black&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Orbitron&display=swap" rel="stylesheet">
     <link rel = "icon" href = "shop.png" type = "image/x-icon">
-    <link rel="stylesheet" type="text/css" href="header.css">
+    <link rel="stylesheet" type="text/css" href="CSS/header.css">
     <script type="text/javascript" src="functions.js"></script>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" type="text/css" href="CSS/login.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
@@ -92,7 +58,7 @@ mysqli_close($link);
             },
             accepts: 'application/json; charset=utf-8',
                 success:function () {
-                $(".wrapper1").css('display',"block");
+                    window.location.href = "mixed1.php";
                 }
         });
         });
@@ -101,12 +67,11 @@ mysqli_close($link);
 </head>
 <div class="main">
     <form name="form" class="form">
-        <a class="f">
+        <div class="f">
             <input class="input"  type="text" id="user" name="user">
             <input class="input" type="password" name="pass1" id="pass1" minlength="8">
             <input class="inputsub" type="submit" name="submit" id="sub" value="Go">
 </div>
-
         </div>
     </form>
 </div>

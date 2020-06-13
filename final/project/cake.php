@@ -28,16 +28,6 @@ HEREDOC;
         print $pp;
     }
 }
-if(isset($_POST['button'])) {
-    $sql = "SELECT * FROM `product` WHERE product_name = 'Red Velvet'";
-    $result = $conn->query($sql);
-
-    if ($result->num_rows > 0) {
-        while ($row = mysqli_fetch_array($result)) {
-            $cc = $row['price'];
-        }
-    }
-}
     $cake = new cake("Cake", 2000, "Mild cocoa flavor,Tangy buttermilk,Sweet vanilla,Very buttery");
     $cake->display();
 ?>
