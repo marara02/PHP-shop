@@ -96,7 +96,7 @@ while($row = mysqli_fetch_assoc($result)){
         <div class='box1' style='display: flex; flex-direction: column; background-color: #239B56; color: #fff; border-radius: 5px; padding: 20px; font-size: 80%;'>
             <form method='post' action=''>
                 <input type='hidden' name='id' value=".$row['product_id']." />
-                <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='80%'></div>
+                <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='90%'></div>
                 <div class='name'>".$row['product_name']."</div>
                 <div class='price'>".$row['price']."tg</div>
                 <button type='submit' class='buy'>Add to cart</button>

@@ -57,7 +57,7 @@ mysqli_close($link);
                 password:$(".inputsub").val()
             },
             accepts: 'application/json; charset=utf-8',
-                success:function () {
+                success:function (data) {
                     window.location.href = "mixed1.php";
                 }
         });

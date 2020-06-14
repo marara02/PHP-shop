@@ -12,7 +12,7 @@ if(!empty($_POST['id']) && !empty($_POST['cost'])){
     $statement->execute();
     $data = $statement->get_result();
     $row = $data->fetch_assoc();
-    if($link->query($query) == TRUE){
+    if($link->query($query) === TRUE){
         $result = array(
             'text'=>"Success"
         );

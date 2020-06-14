@@ -76,6 +76,7 @@
     <span class="dot"></span>
     <span class="dot"></span>
   </div>
+  </div>
       <article>
 <div class="gallery-image">
     <div class="img-box">
@@ -139,7 +140,8 @@
         <span class="dot"></span>
     </div>
   </div>
-
+      </article>
+</div>
   <script>
   var slideIndex = 0;
   showSlides();
@@ -162,30 +164,37 @@
   }
   </script>
       </article>
-
-  <footer class="footer">
-    <!--<br>
-      <h3 class="payment">Payment information</h3>
-
-      <div class="fp">
-          <ul type="disc">
-              <li><a href="#">Help</a></li>
-              <li><a href="#">Feedback</a></li>
-              <li><a href="#">Share</a></li>
-              <li><a href="#">Like</a></li>
-              <li><a href="#">Exchange</a></li>
-              <li><a href="#">return</a></li>
-          </ul>
+  <footer>
+      <div class="footer">
+          <div class="names">
+              <p id = "dev">About us</p>
+              <br>
+              <ul style="list-style-type:none">
+                  <li><img src="https://o.remove.bg/downloads/a8eed9f9-d840-44df-a9d4-966928939753/boss-flat-icon-vector-13859885-removebg-preview.png"  width="20px" height="19px">Company</li>
+                  <li><img src ="https://o.remove.bg/downloads/6cf06af1-c5ff-4385-8b20-53d45ac6ccfb/unnamed-removebg-preview.png" width="20px" height="19px">Our team</li>
+                  <a href ="drink.php"><li><img src="image/line.png" width="20px" height="19px">Catalog</li></a>
+                  <a href="registration.php"><li><img src="https://o.remove.bg/downloads/44f541e4-35d0-4fe9-99a9-cad0ad99dea6/registration-1521660-1288285-removebg-preview.png" width="20px" height="19px">
+                          Register now</li></a>
+              </ul>
+          </div>
+          <div class="vv">
+              <p id = "dev">Opportunities</p>
+              <br>
+              <ul style="list-style-type:none">
+                  <li><img src="https://o.remove.bg/downloads/4039537d-e279-434e-9992-521ab8da3150/job_recruitment_job_search_find_vacancy-512-removebg-preview.png"  width="20px" height="19px">Vacancies</li>
+                  <li><img src ="https://o.remove.bg/downloads/2c2d1eed-8af1-45d8-81a3-946dc9629160/kisspng-video-lesson-streaming-media-television-show-tutor-web-module-5ade9677a29ad6-removebg-preview.png" width="20px" height="19px">Tutorials</li>
+                  <li><img src="image/line.png" width="20px" height="19px">Homepage</li>
+              </ul>
+          </div>
+          <div class = "socialMedia">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Instagram_simple_icon.svg/1200px-Instagram_simple_icon.svg.png"
+               id = "social" alt="instagram" width="38px" height="40px">
+          <img src="https://o.remove.bg/downloads/c3839006-e28f-480f-ada0-35d0d9906853/10-103273_png-file-facebook-icon-in-circle-transparent-png-removebg-preview.png"
+               id="social" alt="facebook" width="38px" height="40px">
+          <img src="https://o.remove.bg/downloads/f699462c-ddac-4232-bb0d-e7ca0915ab26/imgbin-linkedin-icon-linkedin-w5EnSYAug5XP7HMaQmPDkZD8n-removebg-preview.png"
+               id="social" alt="linkedin" width="80px" height="40px">
       </div>
-      <br>
-      <img src="visa.png" class="vis">
-      <img src="masterc.png" class="mast">
-      <img src="tw.png" class="inst4">
-      <a href="https://www.instagram.com/nurg1ssa/"><img src="inst.png" class="inst1"></a>
-      <a href="https://www.instagram.com/n_marara/"><img src="faceb.png" class="inst2"></a>
-      <a href="https://www.instagram.com/luna.vo/"><img src="vk.png" class="inst3"></a>
-      <img src="shop.png" class="shop">-->
-      <a href="Admin.php" style="text-decoration: none;color: #2b772e">Admin</a>
+      </div>
   </footer>
   </body>
 </html>

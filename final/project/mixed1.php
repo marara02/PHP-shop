@@ -53,48 +53,10 @@
     </div>
 </header>
 <hr style="color: black;">
-</header>
 </html>
 <?php
 include_once 'database/authorization.php';
-session_start();
-$info="";
-if (isset($_POST['id']) && $_POST['id']!=" "){
-    $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`='$id'");
-    $row = mysqli_fetch_assoc($result);
-    $name = $row['product_name'];
-    $id = $row['product_id'];
-    $price = $row['price'];
-    $image = $row['img'];
 
-    $cartArray = array(
-        $id=>array(
-            'name'=>$name,
-            'code'=>$id,
-            'price'=>$price,
-            'quantity'=>1,
-            'image'=>$image)
-    );
-
-    if(empty($_SESSION["shopping_cart"])) {
-        $_SESSION["shopping_cart"] = $cartArray;
-        $info = "<div class='message_box'><div class='box'>Product is added to your cart!</div></div>";
-    }else{
-        $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
-        if(in_array($id,$array_keys)) {
-            $info = "<div class='message_box'><div class='box'>
-            Product is already added to your cart!</div></div>";
-        } else {
-            $_SESSION["shopping_cart"] = array_merge(
-                $_SESSION["shopping_cart"],
-                $cartArray
-            );
-            $info = "<div class='message_box'><div class='box'>Product is added to your cart!</div></div>";
-        }
-
-    }
-}
 $result = mysqli_query($link,"SELECT * FROM `product`");
 echo "<div class='wrapper1'>";
 while($row = mysqli_fetch_assoc($result)){
@@ -108,7 +70,7 @@ while($row = mysqli_fetch_assoc($result)){
                 <div class='price'>".$row['price']."tg</div>
                 <input type='number' class='id' name='id' placeholder='id'>
                 <input type='number' class='cost' name='cost' placeholder='New cost'>
-                <button type='submit' class='change' name='change'>Update</button>
+                <input type='submit' class='change' name='change' value='Update'>
             </form>
         </div>";
 }
@@ -118,17 +80,17 @@ echo "</div>
             crossorigin=\"anonymous\"></script>
             <script>
             $(document).ready(function() {
-                $('.change').click(function() {
+                $(\".change\").click(function() {
                   event.preventDefault();
                 $.ajax('update.php',{
                     type:'POST',
                     data:{
-                        id:$('.id').val(),
-                        price:$('.cost').val()},
+                        id:$(\".id\").val(),
+                        price:$(\".cost\").val()},
                         accepts:'application/json; charset=utf-8',
                         success:function(data) {
-                          if(data.text=='Success'){
-                              $('#infor').html('Updated successfully');
+                          if(data.text==='Success'){
+                              $(\"#infor\").html('Updated successfully');
                           }
                         }
                 });
