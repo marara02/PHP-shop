@@ -1,5 +1,5 @@
 <?php
-require_once('database/authorization.php');
+require_once('config.php');
 ?>
 <?php
 
