@@ -16,39 +16,6 @@
     <link rel = "icon" href = "shop.png" type = "image/x-icon">
     <link rel="stylesheet" type="text/css" href="CSS/header.css">
     <script type="text/javascript" src="functions.js"></script>
-    <style>
-        .wrapper1 {
-            text-align: center;
-            margin-left:15%;
-            margin-right: 15%;
-            margin-top: 4%;
-            padding: 0;
-            display:grid;
-            grid-template-columns: 300px 300px 300px;
-            grid-gap: 17px;
-            background-color: white;
-            color: #444;
-        }
-
-        .box {
-            display: flex;
-            flex-direction:column;
-            background-color: #239B56;
-            color: #fff;
-            border-radius: 5px;
-            padding: 20px;
-            font-size: 100%;
-        }
-        div.img{
-            text-align: center;
-            padding-left: 5px;
-            padding-right: 5px;
-        }
-        #t{
-            font-style: italic;
-            font-family: Apple Chancery, cursive;
-        }
-    </style>
 </head>
 <body style="background-color:white">
 <header>
@@ -89,6 +56,42 @@
 <a href ='main.php'><img src ="https://w7.pngwing.com/pngs/814/978/png-transparent-arrow-left-green-arrow-green-bordered-arrow-miscellaneous-angle-rectangle.png" alt ="Direction" width="50px" height="40px"></a>
 <?php
 include_once 'database/authorization.php';
+session_start();
+$info="";
+if (isset($_POST['id']) && $_POST['id']!=" "){
+    $id = $_POST['id'];
+    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`={$id}");
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['product_name'];
+    $id = $row['product_id'];
+    $price = $row['price'];
+
+    $cartArray = array(
+        $id=>array(
+            'name'=>$name,
+            'id'=>$id,
+            'price'=>$price,
+            'quantity'=>1)
+    );
+
+    if(empty($_SESSION["shopping_cart"])) {
+        $_SESSION["shopping_cart"] = $cartArray;
+        $info = "<div class='box'>Product is added to your cart!</div>";
+    }else{
+        $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
+        if(in_array($id,$array_keys)) {
+            $info = "<div class='box'>
+            Product is already added to your cart!</div>";
+        } else {
+            $_SESSION["shopping_cart"] = array_merge(
+                $_SESSION["shopping_cart"],
+                $cartArray
+            );
+            $info = "<div class='box'>Product is added to your cart!</div>";
+        }
+
+    }
+}
 $result = mysqli_query($link,"SELECT * FROM `product`WHERE category_id=5");
 echo "<div class='wrapper1'>";
 while($row = mysqli_fetch_assoc($result)){
@@ -99,7 +102,7 @@ while($row = mysqli_fetch_assoc($result)){
                 <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='90%'></div>
                 <div class='name'>".$row['product_name']."</div>
                 <div class='price'>".$row['price']."tg</div>
-                <button type='submit' class='buy'>Add to cart</button>
+                <button type='submit' class='buy1'>Add to cart</button>
             </form>
         </div>";
 }
