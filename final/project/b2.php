@@ -22,11 +22,11 @@
 <body style="background-color:white">
 <header>
     <div class="topnav">
-        <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"><a href ="main.php">Home</a></p></button>
-        <div class="dropdown">
-            <div id = "list">
-                <button class="dropbtn"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
-            <div class="dropdown-content">
+        <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"><a href ="main.php" style="text-decoration: none;color:white;">Home</a></p></button>
+        <div class="dropdowns">
+            <div id = "lists">
+                <button class="droppp"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
+            <div class="dropdown-contents">
                 <a href = "drink.php">Mixed</a>
                 <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
                 <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
@@ -36,15 +36,15 @@
                 <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <div id = "list">
+        <div class="dropdowns">
+            <div id = "lists">
                 <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
-            <div class="dropdown-content">
+            <div class="dropdown-contents">
                 <a href="#"><p>Email:onlineshop@mail.ru</p></a>
                 <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
-        </
-        <button class="log"><a href="login.php" class="logtext">LogIn</a><p class="sign">/</p><a href="registration.php" class="regtext">Register</a></button>
+        </div>
+        <button class="loginn"><a href="login.php" class="log_text" style="text-decoration: none;color: white">LogIn</a><p class="signnn">/</p><a href="registration.php" class="reg_text" style="color: white;text-decoration: none">Register</a></button>
         <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <button  type = "submit" class="sub" name = "submit" >&#128270;</button>
@@ -110,8 +110,9 @@ while($row = mysqli_fetch_assoc($result)){
 echo "</div>";
 mysqli_close($link);
 ?>
-
+<?php
+include_once 'footer.php'
+?>
 </body>
 </body>
 </html>
-

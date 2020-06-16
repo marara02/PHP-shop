@@ -1,8 +1,9 @@
 <?php
 include_once 'Bakkery.php';
 session_start();
+
 $status=" ";
-if (isset($_POST['action']) && $_POST['action']=="remove"){
+if (isset($_POST['action']) && $_POST['action']=="delete"){
     if(!empty($_SESSION["shopping_cart"])) {
         foreach($_SESSION["shopping_cart"] as $key => $value) {
             if($_POST["id"] == $key){
@@ -26,19 +27,15 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 }
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <title>Online Shop</title>
 </head>
 <body>
 <div id ="log" style="text-align: center">
     <a href="logout.php"><button id = "logout" value="Log out"></button></a>
     <br>
-    <?php
-    if(isset($_COOKIE["User"])){
-        echo '<h1>Welcome, be safe and be with us</h1>';
-    }
-    ?>
 </div>
 <div class="cart">
     <?php
@@ -49,7 +46,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
             <tbody>
             <tr>
                 <td>Product_name</td>
-                <td>Times</td>
+                <td>Quantity</td>
                 <td>Price</td>
                 <td>Total</td>
             </tr>
@@ -59,25 +56,25 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                 <tr>
                     <td><?php echo $product["name"]; ?><br />
                         <form method='post' action=''>
-                            <input type='hidden' name='code' value="<?php echo $product["id"]; ?>" />
-                            <input type='hidden' name='action' value="remove" />
-                            <button type='submit' class='remove'>Remove Item</button>
+                            <input type='hidden' name='id' value="<?php echo $product["id"]; ?>" />
+                            <input type='hidden' name='action' value="delete"/>
+                            <button type='submit' class='remove'>Delete</button>
                         </form>
                     </td>
                     <td>
                         <form method='post' action=''>
-                            <input type='hidden' name='code' value="<?php echo $product["id"]; ?>" />
-                            <input type='hidden' name='action' value="change" />
+                            <input type='hidden' name='id' value="<?php echo $product["id"]; ?>" />
+                            <input type='hidden' name='action' value="change"/>
                             <select name='quantity' class='quantity' onChange="this.form.submit()">
-                                <option <?php if($product["quantity"]==1) echo "selected";?>
+                                <option <?php if($product["quantity"]==1)?>
                                     value="1">1</option>
-                                <option <?php if($product["quantity"]==2) echo "selected";?>
+                                <option <?php if($product["quantity"]==2)?>
                                     value="2">2</option>
-                                <option <?php if($product["quantity"]==3) echo "selected";?>
+                                <option <?php if($product["quantity"]==3)?>
                                     value="3">3</option>
-                                <option <?php if($product["quantity"]==4) echo "selected";?>
+                                <option <?php if($product["quantity"]==4)?>
                                     value="4">4</option>
-                                <option <?php if($product["quantity"]==5) echo "selected";?>
+                                <option <?php if($product["quantity"]==5)?>
                                     value="5">5</option>
                             </select>
                         </form>
@@ -98,7 +95,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
         </table>
         <?php
     }else{
-        echo "<h3>Your cart is empty!</h3>";
+        echo "<h3 style='text-align: center;color: darkred;font-size: 30px'>Your cart is empty!</h3>";
+        echo "<script> document.getElementById(\"pay\").style.display = 'none' </script>";
     }
     ?>
 </div>
@@ -107,7 +105,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
 
 <div class="message_box" style="margin:10px 0px;">
     <?php echo $status; ?>
-    <button onclick="pay()">BUY</button>
+    <button id = "pay" onclick="pay()">BUY</button>
 </div>
 </body>
 </html>

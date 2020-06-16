@@ -33,9 +33,9 @@
                 url:    "insert.php",
                 data: { product_name: product_name, price: price, amount: amount, image:image,category_id:category_id},
                 accepts: 'application/json; charset=utf-8',
-                success:function () {
+                success:function (data) {
                     var result = $.parseJSON(data);
-                    if(result==1){
+                    if(result===1){
                         $('#msg').css('color','green');
                         $('#msg').text("Product added successfully");
                     }
@@ -97,7 +97,7 @@
         <input class="input" type="text" name="image" id ="image">
         <label for="category_name">Category</label>
         <input class="input" type="number" name="category_id" id = "category_name">
-        <input class="inputsub"type="submit" name="submit" id="sub" value="Submit">
+        <input class="inputsub" type="submit" name="submit" id="sub" value="Submit">
     </div>
     </form>
 </div>

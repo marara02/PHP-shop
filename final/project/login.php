@@ -1,5 +1,6 @@
 <?php
 include_once 'database/authorization.php';
+
 if(isset($_COOKIE['User'])){
     header("Location:homepage.php"); //If user already autorize
 }
@@ -71,10 +72,10 @@ if(isset($_POST['submit'])){
 <header>
     <div class="topnav">
         <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"> Home</p></button>
-        <div class="dropdown">
-            <div id = "list">
-                <button class="dropbtn"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
-            <div class="dropdown-content">
+        <div class="dropdowns">
+            <div id = "lists">
+                <button class="droppp"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
+            <div class="dropdown-contents">
                 <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
                 <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
                 <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
@@ -83,15 +84,15 @@ if(isset($_POST['submit'])){
                 <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
             </div>
         </div>
-        <div class="dropdown">
-            <div id = "list">
+        <div class="dropdowns">
+            <div id = "lists">
                 <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
-            <div class="dropdown-content">
+            <div class="dropdown-contents">
                 <a href="#"><p>Email:onlineshop@mail.ru</p></a>
                 <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
         </div>
-        <button class="log"><a href="login.php" class="logtext">LogIn</a><p class="sign">/</p><a href="registration.php" class="regtext">Register</a></button>
+        <button class="loginn"><a href="login.php" class="log_text" style="color: white;text-decoration: none">LogIn</a><p class="signnn">/</p><a href="registration.php" class="reg_text" style="color: white;text-decoration: none">Register</a></button>
         <form method="post" action ="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <input  type = "submit" class="sub" name = "submit" value ="&#128270;">
@@ -112,8 +113,8 @@ if(isset($_POST['submit'])){
     </div>
     </form>
 </div>
-<footer class="fot">
-    <br>
-</footer>
+<?php
+include_once 'footer.php';
+?>
 </body>
 </html>

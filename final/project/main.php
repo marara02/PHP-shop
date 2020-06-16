@@ -16,15 +16,33 @@
     <link rel = "icon" href = "shop.png" type = "image/x-icon">
          <link rel="stylesheet" type="text/css" href="CSS/header.css">
       <script type="text/javascript" src="functions.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js"
+            integrity="sha256-1A78rJEdiWTzco6qdn3igTBv9VupN3Q1ozZNTR4WE/Y=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+           $("#check").click(function () {
+               event.preventDefault();
+               if($("#check").val()==="ru"){
+                   window.location.href = "result.php";
+                   $.cookie("language","ru",{expires: 60});
+               }
+               else{
+                   window.location.href = "main.php";
+                   $.cookie("language","en",{expires:60});
+               }
+           })
+        })
+    </script>
 </head>
 <header>
     <div class="topnav">
         <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"> Home</p></button>
-  <div class="dropdown">
-    <div id = "list">
-        <button class="dropbtn"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
-         <div class="dropdown-content">
-             <a href="drink.php"><img class ="img" src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px">Mixed</a>
+  <div class="dropdowns">
+    <div id = "lists">
+        <button class="droppp"
+        ><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
+         <div class="dropdown-contents">
+             <a href="drink.php"><img src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px">Mixed</a>
       <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
       <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
       <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
@@ -33,15 +51,15 @@
       <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
     </div>
 </div>
-  <div class="dropdown">
-    <div id = "list">
+  <div class="dropdowns">
+    <div id = "lists">
         <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
-           <div class="dropdown-content">
+           <div class="dropdown-contents">
        <a href="#"><p>Email:onlineshop@mail.ru</p></a>
        <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
     </div>
 </div>
-        <button class="log"><a href="login.php" class="logtext">LogIn</a><p class="sign">/</p><a href="registration.php" class="regtext">Register</a></button>
+        <button class="loginn"><a href="login.php" class="log_text" style="color: white;text-decoration: none">LogIn</a><p class="signnn">/</p><a href="registration.php" class="reg_text" style="color: white;text-decoration: none">Register</a></button>
         <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <input  type = "submit" class="sub" name = "submit" value ="&#128270;">
@@ -52,21 +70,31 @@
 
     </div>
  </header> 
-<hr style="color: black;">
+<!--<hr style="color: black;">-->
 </header>
 <body>
-<div class="main">
-  <div class="slideshow-container">
+<form action="result.php" method="post">
+    <select name="lang">
+        <option value="en"<?php if( $_COOKIE["language"] == "en" ) { echo " selected"; } ?>>En</option>
+        <option value="ru"<?php if( $_COOKIE["language"] == "ru" ) { echo " selected"; } ?>>Ru</option>
+    </select>
+    <input type="submit" value="Select Language">
+</form>
 
-  <div class="mySlides fade">
+<div class="main">
+  <div class="slideshow-container" style="margin-top:15px;
+	text-align: center;
+	vertical-align: middle;">
+
+  <div class="my">
     <img src="image/shop1.png" alt ="1" width="800px" height="560px">
   </div>
 
-  <div class="mySlides fade">
+  <div class="my">
     <img src="image/new.png" alt ="2" width="800px" height="560px">
   </div>
 
-  <div class="mySlides fade">
+  <div class="my">
   	<img src="image/stay.png" alt ="3" width="800px" height="560px">
   </div>
   <br>
@@ -148,7 +176,7 @@
 
   function showSlides() {
     var i;
-    var slides = document.getElementsByClassName("mySlides");
+    var slides = document.getElementsByClassName("my");
     var dots = document.getElementsByClassName("dot");
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
@@ -164,37 +192,8 @@
   }
   </script>
       </article>
-  <footer>
-      <div class="footer">
-          <div class="names">
-              <p id = "dev">About us</p>
-              <br>
-              <ul style="list-style-type:none">
-                  <li><img src="https://o.remove.bg/downloads/a8eed9f9-d840-44df-a9d4-966928939753/boss-flat-icon-vector-13859885-removebg-preview.png"  width="20px" height="19px">Company</li>
-                  <li><img src ="https://o.remove.bg/downloads/6cf06af1-c5ff-4385-8b20-53d45ac6ccfb/unnamed-removebg-preview.png" width="20px" height="19px">Our team</li>
-                  <a href ="drink.php"><li><img src="image/line.png" width="20px" height="19px">Catalog</li></a>
-                  <a href="registration.php"><li><img src="https://o.remove.bg/downloads/44f541e4-35d0-4fe9-99a9-cad0ad99dea6/registration-1521660-1288285-removebg-preview.png" width="20px" height="19px">
-                          Register now</li></a>
-              </ul>
-          </div>
-          <div class="vv">
-              <p id = "dev">Opportunities</p>
-              <br>
-              <ul style="list-style-type:none">
-                  <li><img src="https://o.remove.bg/downloads/4039537d-e279-434e-9992-521ab8da3150/job_recruitment_job_search_find_vacancy-512-removebg-preview.png"  width="20px" height="19px">Vacancies</li>
-                  <li><img src ="https://o.remove.bg/downloads/2c2d1eed-8af1-45d8-81a3-946dc9629160/kisspng-video-lesson-streaming-media-television-show-tutor-web-module-5ade9677a29ad6-removebg-preview.png" width="20px" height="19px">Tutorials</li>
-                  <li><img src="image/line.png" width="20px" height="19px">Homepage</li>
-              </ul>
-          </div>
-          <div class = "socialMedia">
-          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3e/Instagram_simple_icon.svg/1200px-Instagram_simple_icon.svg.png"
-               id = "social" alt="instagram" width="38px" height="40px">
-          <img src="https://o.remove.bg/downloads/c3839006-e28f-480f-ada0-35d0d9906853/10-103273_png-file-facebook-icon-in-circle-transparent-png-removebg-preview.png"
-               id="social" alt="facebook" width="38px" height="40px">
-          <img src="https://o.remove.bg/downloads/f699462c-ddac-4232-bb0d-e7ca0915ab26/imgbin-linkedin-icon-linkedin-w5EnSYAug5XP7HMaQmPDkZD8n-removebg-preview.png"
-               id="social" alt="linkedin" width="80px" height="40px">
-      </div>
-      </div>
-  </footer>
+<?php
+include_once 'footer.php';
+?>
   </body>
 </html>

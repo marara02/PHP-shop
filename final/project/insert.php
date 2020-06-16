@@ -10,20 +10,20 @@ $category_id = $_POST['category_id'];
 if(!$product_name || !$price || !$image || !$category_id || !$amount){
     echo '<alert>Fill all gaps</alert>';
 }
-else{
+else {
     $sql = "INSERT INTO (product product_name,price,amount,img,category_id) VALUES (?,?,?,?,?)";
     $statement = $link->prepare($sql);
-    $statement->bind_param("siisi",$product_name,$price,$amount,$image,$category_id);
-    if($statement->execute()){
+    $statement->bind_param("siisi", $product_name, $price, $amount, $image, $category_id);
+    if ($statement->execute()) {
         $result = 1;
+        $data = array(
+            'product_name' => $product_name,
+            'price' => $price,
+            'amount' => $amount,
+            'image' => $image,
+            'category_id' => $category_id
+        );
     }
-    $data = array(
-        'product_name'=>$product_name,
-        'price'=>$price,
-        'amount'=>$amount,
-        'image'=>$image,
-        'category_id'=>$category_id
-    );
 }
 echo $result;
 echo (json_encode($data));
