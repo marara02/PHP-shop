@@ -41,7 +41,6 @@
                 <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
         </div>
-        <button class="loginn"><a href="login.php" class="log_text" style="color: white;text-decoration: none">LogIn</a><p class="signnn">/</p><a href="registration.php" class="reg_text" style="color: white;text-decoration: none">Register</a></button>
         <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <input  type = "submit" class="sub" name = "submit" value ="&#128270;">
@@ -57,15 +56,23 @@
 <?php
 include_once 'database/authorization.php';
 session_start();
-$info="";
+
+
 if (isset($_POST['id']) && $_POST['id']!=" "){
-    $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`={$id}");
+    $id = mysqli_real_escape_string($link, $_POST['id']);
+    $query = "SELECT * FROM product WHERE product_id = ?";
+    $stmt = mysqli_stmt_init($link);
+    if(!mysqli_stmt_prepare($stmt, $query)){
+        echo "SQL statement failed.";
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    }
     $row = mysqli_fetch_assoc($result);
     $name = $row['product_name'];
     $id = $row['product_id'];
     $price = $row['price'];
-
     $cartArray = array(
         $id=>array(
             'name'=>$name,
@@ -78,7 +85,7 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
         $_SESSION["shopping_cart"] = $cartArray;
         $info = "<div class='box'>Product is added to your cart!</div>";
     }else{
-        $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
+        $array_keys = array_keys($_SESSION["shopping_cart"]);
         if(in_array($id,$array_keys)) {
             $info = "<div class='box'>
             Product is already added to your cart!</div>";

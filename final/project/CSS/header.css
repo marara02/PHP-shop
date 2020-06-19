@@ -76,20 +76,19 @@ left: 190px;
   left: 160px;
   top: 25px;
 }
-.dropdown {
+.dropdowns {
   float: left;
   overflow: hidden;
 
 }
-
-.dropdown .dropbtn {
+.dropdowns .droppp {
   font-size: 20px;
   border: none;
   outline: none;
   color: white;
   padding: 14px 16px;
   margin: 0;
-  background-color: #58D68D;
+  background-color: #58D68D; 
   font-family: 'Bebas Neue', cursive;
   height: 70px;
   width: 150px;
@@ -108,11 +107,11 @@ left: 190px;
   padding: 14px 16px;
   text-decoration: none;
 }
-.navbar a:hover, .dropdown:hover .dropbtn {
+.navbar a:hover, .dropdowns:hover .droppp {
   background-color: #1D8348;
 }
 
-.dropdown-content {
+.dropdown-contents {
   display: none;
   position: absolute;
   background-color: #f9f9f9;
@@ -122,7 +121,7 @@ left: 190px;
   z-index: 1;
 }
 
-.dropdown-content a {
+.dropdown-contents a {
   float: none;
   color: black;
   padding: 12px 16px;
@@ -130,12 +129,12 @@ left: 190px;
   display: block;
 }
 
-.dropdown-content a:hover {
+.dropdown-contents a:hover {
   background-color: #ABEBC6;
 
 }
 
-.dropdown:hover .dropdown-content {
+.dropdowns:hover .dropdown-contents {
   display: block;
 }
 .contacts{
@@ -155,28 +154,28 @@ left: 335px;
   left: -25px;
 
 }
-a {
+.loginnn >a {
     color: white;
     text-decoration: none;
 }
-.log{
+.loginn{
 background-color: #28B463;
 height: 70px;
 width: 200px;
 }
-.logtext{
+.log_text{
   font-size: 165%;
 position: absolute;
 top: 18px;
 left: 465px;
 }
-.regtext{
+.reg_text{
   font-size: 165%;
 position: absolute;
 top: 18px;
 left: 537px;
 }
-.sign{
+.signnn{
 font-size: 165%; 
 position: absolute;
 left: 525px;
@@ -195,7 +194,6 @@ top:18px;
   position: absolute;
   left:890px;
   top: 10px;
-  font-family: 'MuseoModerno', cursive;
 }
 .sub {
   height: 50px;

@@ -381,7 +381,7 @@ ul{
     color: #2b772e;
 }
 .table{
-    margin-left: 10%;
+    margin-left: 9%;
     background-color: #f0f3f4 ;
 }
 .table td {
@@ -485,7 +485,7 @@ ul{
 }
 
 .form{
-    width: 50%;
+    width: 40%;
     height: inherit;
     background-color: rgba(255, 255, 255, 0.07);
     display: flex;

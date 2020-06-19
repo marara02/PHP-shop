@@ -4,13 +4,20 @@ include_once 'Bakkery.php';
 session_start();
 $info="";
 if (isset($_POST['id']) && $_POST['id']!=" "){
-    $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`={$id}");
+    $id = mysqli_real_escape_string($link, $_POST['id']);
+    $query = "SELECT * FROM product WHERE product_id = ?";
+    $stmt = mysqli_stmt_init($link);
+    if(!mysqli_stmt_prepare($stmt, $query)){
+        echo "SQL statement failed.";
+    } else {
+        mysqli_stmt_bind_param($stmt, "i", $id);
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+    }
     $row = mysqli_fetch_assoc($result);
     $name = $row['product_name'];
     $id = $row['product_id'];
     $price = $row['price'];
-
     $cartArray = array(
         $id=>array(
             'name'=>$name,

@@ -44,7 +44,6 @@
                 <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
         </div>
-        <button class="loginn"><a href="login.php" class="log_text" style="text-decoration: none;color: white">LogIn</a><p class="signnn">/</p><a href="registration.php" class="reg_text" style="color: white;text-decoration: none">Register</a></button>
         <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <button  type = "submit" class="sub" name = "submit" >&#128270;</button>

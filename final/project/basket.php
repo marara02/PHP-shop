@@ -6,7 +6,7 @@ $status=" ";
 if (isset($_POST['action']) && $_POST['action']=="delete"){
     if(!empty($_SESSION["shopping_cart"])) {
         foreach($_SESSION["shopping_cart"] as $key => $value) {
-            if($_POST["name"] == $key){
+            if($_POST["id"] == $key){
                 unset($_SESSION["shopping_cart"][$key]);
                 $status = "<div class='box' style='color:darkred;'>
             Product is removed!</div>";
@@ -37,9 +37,10 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript">
             $(document).ready(function () {
+
                 $('#pay').click(function() {
                     event.preventDefault();
-                    var full_name = $('#full_name').val();
+                        var full_name = $('#full_name').val();
                         var email = $('#email').val();
                         var tel_num = $('#number').val();
                         var address = $('#address').val();
@@ -49,11 +50,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                             url: 'reg.php',
                             data:{full_name:full_name, email:email, tel_num:tel_num, address:address,cost:cost},
                             success: function (data) {
-                                Swal.fire(
-                                    'Congratulations!',
-                                    data,
-                                    'success'
-                                )
+                              window.location.href = 'pay1.php';
                             },
                             error: function (data) {
                                 Swal.fire(
@@ -79,7 +76,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
             <tbody>
             <tr>
                 <td>Product_name</td>
-                <td>Quantity</td>
+                <td>Amount/kg</td>
                 <td>Price</td>
                 <td>Total</td>
             </tr>
@@ -89,7 +86,7 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                 <tr>
                     <td><?php echo $product["name"];?><br />
                         <form method='post' action=''>
-                            <input type='hidden' name='name' value="<?php echo $product["name"]; ?>" />
+                            <input type='hidden' name='id' value="<?php echo $product["id"]; ?>" />
                             <input type='hidden' name='action' value="delete"/>
                             <button type='submit' class='remove'>Delete</button>
                         </form>
@@ -128,18 +125,23 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
             </tr>
             </tbody>
         </table>
-            <form class="form">
-                <div class="f" style="float: left;margin-left: 25px">
-                    <input class="input" type="text" id = 'full_name' name='full_name' placeholder="Full Name">
-                    <input class="input"  type="email" id='email' name="email" placeholder="Email">
-                    <input class="input" type="text" id = 'address' name="address" placeholder="Street/house/apartment">
-                    <input class="input" type="number" id = 'number' name="number" placeholder="+7 XXX-XXX-XX-XX">
-                    <input class="input" type="number"  id = 'cost' name = "cost" value="<?php echo $total_price ?>">
-                    <input type="checkbox" id="variant" name="variant" value="Card">
-                    <label for="variant"> By card</label>
-                    <input type="checkbox" id="variant1" name="variant2" value="Cash">
-                    <label for="variant1"> Сash on delivery</label>
-                    <input type="submit" id = "pay" name = 'submit' style="display: block" value="BUY">
+            <form class='form'>
+                <div class='f' style='float: left;margin-left: 25px'>
+                    <input class='input' type='text' id = 'full_name' name='full_name' placeholder='Full Name'>
+                    <input class='input'  type='email' id='email' name='email' placeholder='Email'>
+                    <input class='input' type='text' id = 'address' name='address' placeholder='Street/house/apartment'>
+                    <input class='input' type='text' id = 'number' name='number' placeholder= '+7 XXX-XXX-XX-XX'>
+                    <input class='input' type='number'  id = 'cost' name = 'cost' value='<?php echo $total_price?>'>
+                    <input type='checkbox' id='variant' name='variant' value='Card'>
+                    <label for='variant'> By card</label>
+                    <input type='checkbox' id='variant1' name='variant2' value='Cash'>
+                    <label for='variant1'>Сash on delivery</label>
+                    <div class = 'cartochka' style="display: none">
+                    <input class="input" type="text" id = 'card' placeholder="0000-0000-0000-0000-0000" style="display: none">
+                    <input class ='input' type="text" id = 'cv' placeholder="CCV">
+                    <input class ='input' type="text" id = 'data' placeholder="MM/YY">
+                    </div>
+                    <input type='submit' id = 'pay' name = 'submit' style='display: block' value='BUY'>
                 </div>
             </form>
         </div>
