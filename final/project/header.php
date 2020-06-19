@@ -38,8 +38,8 @@
             <div id = "list">
                 <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
             <div class="dropdown-content">
-                <a href="#" style="font-family: 'Bebas Neue', cursive"><p>Email:onlineshop@mail.ru</p></a>
-                <a href="#" style="font-family: 'Bebas Neue', cursive"><p>Phone number:+7(777)-777-77-77</p></a>
+                <a href="https://mail.google.com/mail/u/0/#inbox" style="font-family: 'Bebas Neue', cursive"><p>Email:onlineshop@mail.ru</p></a>
+                <a href="https://web.whatsapp.com/" style="font-family: 'Bebas Neue', cursive"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
         </div>
         <form method="post" action="check.php">
