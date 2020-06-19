@@ -1,67 +1,49 @@
 <?php
-include_once 'database/authorization.php';
-include_once 'Bakkery.php';
-session_start();
-$info="";
-if (isset($_POST['id']) && $_POST['id']!=" "){
-    $id = $_POST['id'];
-    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`={$id}");
-    $row = mysqli_fetch_assoc($result);
-    $name = $row['product_name'];
-    $id = $row['product_id'];
-    $price = $row['price'];
-
-    $cartArray = array(
-        $id=>array(
-            'name'=>$name,
-            'id'=>$id,
-            'price'=>$price,
-            'quantity'=>1)
-    );
-
-    if(empty($_SESSION["shopping_cart"])) {
-        $_SESSION["shopping_cart"] = $cartArray;
-        $info = "<div class='box'>Product is added to your cart!</div>";
-    }else{
-        $array_keys = array_keys($_SESSION["shopping_cart"]);
-        if(in_array($id,$array_keys)) {
-            $info = "<div class='box'>
-            Product is already added to your cart!</div>";
-        } else {
-            $_SESSION["shopping_cart"] = array_merge(
-                $_SESSION["shopping_cart"],
-                $cartArray
-            );
-            $info = "<div class='box'>Product is added to your cart!</div>";
+include_once("header.php");
+?>
+      <style>
+           .wrapper1 {
+            text-align: center;
+            margin-left:15%;
+               margin-right: 15%;
+            margin-top: 4%;
+            padding: 0;
+            display:grid;
+            grid-template-columns: 300px 300px 300px;
+            grid-gap: 17px;
+            background-color: white;
+            color: #444;
         }
 
-    }
-}
-$result = mysqli_query($link,"SELECT * FROM `product`WHERE category_id = 1");
-echo "<div class='wrapper1'>";
-while($row = mysqli_fetch_assoc($result)){
-    echo "
-        <div class='box1' style='display: flex; flex-direction: column; background-color: #239B56; color: #fff; border-radius: 5px; padding: 20px; font-size: 80%;'>
-            <form method='post' action=''>
-                <input type='hidden' name='id' value=".$row['product_id']." />
-                <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='90%'></div>
-                <div class='name'>".$row['product_name']."</div>
-                <div class='price'>".$row['price']."tg</div>
-                <button type='submit' class='buy1'>Add to cart</button>
-                <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@9\"></script>
-                <script>
-                $(document).ready(function(){
-                    $('.buy1').click(function() {
-                        Swal.fire('Product added to basket:)');
-                    })   
-                });
-            </script>
-            </form>
-        </div>";
-}
-echo "</div>";
-mysqli_close($link);
-?>
+        .box {
+            display: flex;
+            flex-direction:column;
+            background-color: #239B56;
+            color: #fff;
+            border-radius: 5px;
+            padding: 20px;
+            font-size: 100%;
+        }
+        div.img{
+            text-align: center;
+            padding-left: 5px;
+            padding-right: 5px;
+        }
+          #t{
+              font-style: italic;
+              font-family: Apple Chancery, cursive;
+          }
+      </style>
+<body>
+    <div class="wrapper1">
+        <div class="box"><img src ="image/r.jpg" alt ="beef" width= 100% ><a href = "cake.php"><p id = "t">Red Velvet<br>2000tg</p></a></div>
+        <div class="box"><img src ="https://www.kingarthurflour.com/sites/default/files/recipe_legacy/1058-3-large.jpg" alt ="chicken" width="100%" height="80%"><a href = "vopi.php"><p id ="t">Voopie<br>3000tg</p></a></div>
+        <div class="box"><img src ="https://i.ytimg.com/vi/v9nI6pdw-HQ/maxresdefault.jpg" alt ="Japan cake" width="100%" height="80%"><a href = "honey.php"><p id ="t">Japanese Cake<br>2000tg</br></p></a></div>
+        <div class="box"><img src ="image/cook.jpg" alt ="Cookies" width="100%" height="90%"><a href = "Cookie.php"><p id ="t">Cookies<br>500tg</br></p></a></div>
+        <div class="box"><img src ="image/cap.jpg" alt ="Capcakes" width="100%" height="90%"><a href = "Cupi.php"><p id ="t">Cupcakes<br>150tg</br></p></a></div>
+        <div class="box"><img src ="https://www.biggerbolderbaking.com/wp-content/uploads/2020/04/Hearty-Yeast-Free-Bread-WS-Thumbnail.jpg" alt ="Bread" width="100%" height="90%"><a href = "Bread.php"><p id = "t">Bread<br>100tg</br></p></a></div>
+</div>
+</body>
 </body>
 </body>
 </html>
