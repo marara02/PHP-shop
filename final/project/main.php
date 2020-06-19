@@ -105,8 +105,8 @@
   </div>
   </div>
 </div>
-      <article>
-<div class="gallery-image">
+     <article>
+    <div class="gallery-image">
     <div class="img-box">
       <img src="https://images.pexels.com/photos/917302/pexels-photo-917302.jpeg?cs=srgb&dl=silver-fork-and-knife-on-round-plate-with-cupcake-917302.jpg&fm=jpg" alt="" />
       <div class="transparent-box">

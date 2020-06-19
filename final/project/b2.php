@@ -18,7 +18,6 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
     $name = $row['product_name'];
     $id = $row['product_id'];
     $price = $row['price'];
-
     $cartArray = array(
         $id=>array(
             'name'=>$name,

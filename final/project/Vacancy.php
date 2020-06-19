@@ -1,5 +1,5 @@
 <?php
-
+include_once 'database/authorization.php';
 class Vacancy extends head{
 
     public function setPosition($position)
