@@ -21,7 +21,7 @@ include_once ('header.php')
 
         <div class="f">
 
-            <h1>Registration</h1>
+            <h1>User information form</h1>
 
             <input class="input" type="name" id="full_name" name="full_name" placeholder="Full Name" required>
             <input class="input"  type="Email" id="email" name="email" placeholder="Email" required>
