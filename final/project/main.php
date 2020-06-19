@@ -73,14 +73,14 @@
 <!--<hr style="color: black;">-->
 </header>
 <body>
-<form action="result.php" method="post">
+<!--<form>
     <select name="lang">
         <option value="en"<?php if( $_COOKIE["language"] == "en" ) { echo " selected"; } ?>>En</option>
         <option value="ru"<?php if( $_COOKIE["language"] == "ru" ) { echo " selected"; } ?>>Ru</option>
     </select>
     <input type="submit" value="Select Language">
-</form>
-
+</form>-->
+<div class="media-body">
 <div class="main">
   <div class="slideshow-container" style="margin-top:15px;
 	text-align: center;
@@ -105,6 +105,7 @@
     <span class="dot"></span>
   </div>
   </div>
+</div>
       <article>
 <div class="gallery-image">
     <div class="img-box">

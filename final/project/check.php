@@ -60,6 +60,43 @@
 </html>
 <?php
 include_once 'database/authorization.php';
+
+session_start();
+$info="";
+if (isset($_POST['id']) && $_POST['id']!=" "){
+    $id = $_POST['id'];
+    $result = mysqli_query($link, "SELECT * FROM `product` WHERE `product_id`={$id}");
+    $row = mysqli_fetch_assoc($result);
+    $name = $row['product_name'];
+    $id = $row['product_id'];
+    $price = $row['price'];
+
+    $cartArray = array(
+        $id=>array(
+            'name'=>$name,
+            'id'=>$id,
+            'price'=>$price,
+            'quantity'=>1)
+    );
+
+    if(empty($_SESSION["shopping_cart"])) {
+        $_SESSION["shopping_cart"] = $cartArray;
+        $info = "<div class='box'>Product is added to your cart!</div>";
+    }else{
+        $array_keys = array_keys($_SESSION["shopping_cart"]);  //return all elements which in array
+        if(in_array($id,$array_keys)) {
+            $info = "<div class='box'>
+            Product is already added to your cart!</div>";
+        } else {
+            $_SESSION["shopping_cart"] = array_merge(
+                $_SESSION["shopping_cart"],
+                $cartArray
+            );
+            $info = "<div class='box'>Product is added to your cart!</div>";
+        }
+
+    }
+}
 if(isset($_POST['submit'])) {
     $str = $_POST['search'];
     $sql = "SELECT * FROM `product` WHERE product_name = '$str'";
@@ -68,26 +105,28 @@ if(isset($_POST['submit'])) {
     if ($result->num_rows > 0) {
         if ($result->num_rows > 0) {
             while ($row = mysqli_fetch_array($result)) {
-                echo "<div class ='product'>";
-                echo "<br>";
-                echo "<table style = 'text-align: center'>";
-                echo "<tr>";
-                echo  $row['product_name'];
-                echo '<br>';
-                echo $row['price']. '<small>tg</small>';
-                echo "</tr>";
-                echo "</table>";
-                if($row['product_name'] == 'Red Velvet' && 'Voopie' && 'Cookie' && 'Cupcakes' && 'Bread' && 'Japanese cake'){
-                    echo '<img src ="https://static.toiimg.com/photo/48201473/.jpg" alt ="bakery" height="26%" width="30%">';
-                    echo '<p style ="font-family:Apple Chancery, cursive; font-size:30px; text-align:center;">Founded from list</p>';
-                    echo '<p style ="font-size:25px;"><a href ="b2.php" style ="color:#4CAF50">Bakery products>>></a></p>';
-                }
-                elseif($row['product_name'] == 'Beef' && 'Whole Chicken' && 'Chicken Breast' && 'Chicken legs' && 'Sheep meat'){
-                    echo '<img src ="image/beef.jpg" alt ="meat" height="26%" width="30%">';
-                    echo '<p style ="font-family:Apple Chancery, cursive; font-size:30px; text-align:center;">Founded from list</p>';
-                    echo '<p style ="color =#4CAF50"><a href ="meal.php" style ="color:#4CAF50">Meats>>></a></p>';
-                }
-            }
+                 echo "
+<div class = 'wrapper1'>
+        <div class='box1' style='display: flex; flex-direction: column; color: #fff; border-radius: 5px; padding: 20px; font-size: 80%;'>
+            <form method='post' action=''>
+                <input type='hidden' name='id' value=".$row['product_id']." />
+                <div class='name'>".$row['product_name']."</div>
+                <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='80%'></div>
+                <div class='price'>".$row['price']."tg</div>
+                <button type='submit' class='buy1'>Add to cart</button>
+                                  <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@9\"></script>
+                <script >
+                $(document) . ready(function () {
+                    $('.buy1') . click(function () {
+                        Swal . fire('Product added to basket:)');
+                    });
+                });
+            </script >
+            </form>
+        </div>
+        </div>
+        ";
+}
         } else {
             echo '<h3 style ="text-align:center; color:darkred">No results</h3>';
         }

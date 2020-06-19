@@ -54,7 +54,6 @@
 </header>
 <hr style="color: black;">
 </header>
-</html>
 <?php
 include_once 'database/authorization.php';
 session_start();
@@ -120,6 +119,7 @@ echo "</div>
     </script>";
 mysqli_close($link);
 ?>
-<div class = "message_box"  style="margin:10px 0px;">
+<span class = "message_box"  style="margin:10px 0px;">
 <?php echo $info?>
-</div>
+</span>
+</html>

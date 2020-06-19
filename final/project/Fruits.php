@@ -48,6 +48,15 @@ while($row = mysqli_fetch_assoc($result)){
                 <div class='name'>".$row['product_name']."</div>
                 <div class='price'>".$row['price']."tg</div>
                 <button type='submit' class='buy1'>Add to cart</button>
+                     <script src=\"https://cdn.jsdelivr.net/npm/sweetalert2@9\"></script>
+                <script >
+    $(document) . ready(function () {
+        $('.buy1') . click(function () {
+            Swal . fire('Product added to basket:)');
+        });
+    });
+            </script >
+            </form >
             </form>
         </div>";
 }
