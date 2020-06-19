@@ -1,40 +1,25 @@
 <?php
+if (isset($_POST)) {
+$cnumber = mysqli_real_escape_string($link, $_POST['cnumber']);
+$expiry = mysqli_real_escape_string($link, $_POST['expiry']);
+$cvc = mysqli_real_escape_string($link, $_POST['cvc']);
 
-
-$cls = new Classs();
-
-if (isset($_POST['submit'])) {
-    $cls->Show();
+$query = "INSERT INTO card ( cnumber, expiry, cvc) VALUES (?,?,?)";
+$stmt = mysqli_stmt_init($link);
+if(!mysqli_stmt_prepare($stmt, $query)){
+echo "SQL statement failed.";
+} else {
+mysqli_stmt_bind_param($stmt, "sss", $cnumber, $expiry, $cvc);
 }
-
-class Classs
-{
-    private $cnum;
-    private $cdate;
-    private $cvc;
-
-    function __construct()
-    {
-        $this->cnum = (isset($_POST['number']) ? $_POST['number'] : null);
-        $this->cdate = (isset($_POST['expiry']) ? $_POST['expiry'] : null);
-        $this->cvc = (isset($_POST['cvc']) ? $_POST['cvc'] : null);
-    }
-
-    function Show()
-    {
-        if (!empty($this->cnum) && !empty($this->cdate) && !empty($this->cvc)) {
-            // need go to main page
-            header('Location: pay1.php');
-        } elseif (empty($this->cnum)) {
-            require 'pay1.php';
-            echo 'You need card number';
-        } elseif (empty($this->cdate)) {
-            require 'pay1.php';
-            echo 'You need card date';
-        } elseif (empty($this->cvc)) {
-            require 'pay1.php';
-            echo 'You need CVC';
-        }
-    }
+$result = mysqli_stmt_execute($stmt);
+$stmt->close();
+if ($result) {
+echo 'Successfully saved';
+} else {
+echo 'There were errors while saving the data.';
 }
-
+}
+else{
+echo 'No data';
+}
+?>
