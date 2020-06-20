@@ -3,11 +3,13 @@ abstract class head{
     private $full_name;
     private $position;
     private $salary;
+    private $description;
      public function __construct()
      {
          $this->full_name;
          $this->position;
          $this->salary;
+         $this->description;
      }
 
     /**
@@ -56,5 +58,21 @@ abstract class head{
     public function getSalary()
     {
         return $this->salary;
+    }
+
+    /**
+     * @param mixed $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

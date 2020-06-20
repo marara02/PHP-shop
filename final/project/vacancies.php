@@ -2,22 +2,10 @@
 include 'head.php';
 include "vacancies.php";
 include_once 'vvShow.php';
-session_start();
 
-class vvShow{
-    public function choose()
-    {
-        $conn = new Database(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
-        $sql = "SELECT * FROM vacancy";
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $Vacancy = new Vacancy();
-        $Vacancy->setPosition($row['position']);
-        $Vacancy->setSalary($row['salary']);
-        $Vacancy->ShortDescription($row['description']);
-    }
-}
+$vvv = new vvShow();
+
+$vacan = $vvv->choose($_COOKIE['Vacancy']['information']);
 ?>
 !DOCTYPE html>
 <html lang="en">
@@ -32,4 +20,7 @@ class vvShow{
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1 class = "display-3" style="text-align: center;padding-bottom: 10px; margin-top: 20px">Open vacancies in shop</h1>
+<h1 class = "display-3" style="text-align: center;padding-bottom: 10px; margin-top: 20px">Open vacancies in shop</h1>\
+<p><?php echo $vacan->getPosition()?></p>
+<p><?php echo $vacan->getSalary()?></p>
+<p><?php echo $vacan->getDescription()?></p>

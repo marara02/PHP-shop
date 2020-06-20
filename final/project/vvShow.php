@@ -4,28 +4,28 @@ include_once 'database/authorization.php';
 include_once 'footer.php';
 
 class vvShow{
-    public function choose()
+    public function choose($information)
     {
         $conn = new Database(DB_SERVER, DB_USER, DB_PASS, DB_DATABASE);
-        $sql = "SELECT * FROM vacancy";
-        $stmt = $conn->prepare($sql);
-        $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        while ($row != null) {
-            $Vacancy = new Vacancy();
-            $Vacancy->setPosition($row['position']);
-            $Vacancy->setSalary($row['salary']);
-            $first = $Vacancy->ShortDescription($row['description']);
-            $position = $Vacancy->getPosition();
-            $money = $Vacancy->getSalary();
-            echo "<div class='container p-3 my-3 border'>
-                  <h1>$position: Salary: $money</h1>
-                   <p>$first</p>
-                     </div>
+        $link = $conn->connect();
+        $statement = $link->prepare("SELECT * FROM vacancies");
+        $statement->execute();
 
-";
-        }
+        $result = $statement->get_result();
+        $row = $result->fetch_assoc();
+        $vacancy = new Vacancy();
+        $vacancy->setPosition($row['position']);
+        $vacancy->setSalary($row['salary']);
+        $vacancy->setDescription($row['description']);
+
+        setcookie("Vacancy",$information,time()+3600);
+        $_COOKIE['Vacancy'] = array(
+            'position'=>$vacancy->getPosition(),
+            'salary'=>$vacancy->getSalary(),
+            'description'=>$vacancy->getDescription()
+        );
+
+        return $vacancy;
     }
+
 }
-$vvv = new vvShow();
-$vvv->choose();

@@ -105,70 +105,30 @@
   </div>
   </div>
 </div>
-     <article>
-    <div class="gallery-image">
-    <div class="img-box">
-      <img src="https://images.pexels.com/photos/917302/pexels-photo-917302.jpeg?cs=srgb&dl=silver-fork-and-knife-on-round-plate-with-cupcake-917302.jpg&fm=jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p><a href ="b2.php">Bakery products</a></p>
-          <p class="opacity-low">NEW catalog</p>
-        </div>
-      </div> 
-    </div>
-    <div class="img-box">
-      <img src="https://images.pexels.com/photos/3772492/pexels-photo-3772492.jpeg?cs=srgb&dl=milk-and-honey-on-wooden-tray-3772492.jpg&fm=jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Natural Products</p>
-          <p class="opacity-low">Eco system from villages 180 <small>tg</small></p>
-        </div>
-      </div>
-    </div>
-    <div class="img-box">
-      <img src="https://picsum.photos/350/250/?image=431" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Columbia Coffee</p>
-          <p class="opacity-low">New cost 1500 <small>tg per 1 kg</small></p>
-        </div>
-      </div>
-    </div>
-    <div class="img-box">
-      <img src="image/fff.jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Sales to fruits and vegetables</p>
-          <p class="opacity-low">50% of sale</p>
-        </div>
-      </div> 
-    </div>
-    <div class="img-box">
-      <img src="https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?cs=srgb&dl=peppermint-tea-on-teacup-1417945.jpg&fm=jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Aromo tea from India</p>
-          <p class="opacity-low">New Cost</p>
-        </div>
-      </div> 
-    </div>
-    <div class="img-box">
-      <img src="https://images.pexels.com/photos/1022417/pexels-photo-1022417.jpeg?cs=srgb&dl=close-up-photo-of-hershey-s-bars-near-jars-1022417.jpg&fm=jpg" alt="" />
-      <div class="transparent-box">
-        <div class="caption">
-          <p>Switzerland chocolate</p>
-          <p class="opacity-low">Minimum cost 450<small>tg</small></p>
-        </div>
-      </div> 
-    </div>
-    <br>
-    <div style="text-align:center">
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
-  </div>
-      </article>
+
+         <?php
+         include_once 'database/authorization.php';
+
+         $result = mysqli_query($link,"SELECT * FROM `news` LIMIT 6");
+         echo "<article>";
+         echo "<div class='gallery-image'>";
+         while($row = mysqli_fetch_assoc($result)) {
+             echo "
+        <div class = 'img-box'>
+        <img src=" . $row['img'] . "/>
+        <div class='transparent-box'>
+        <div class='caption'>
+        <p><a href = 'drink.php' style='color: white;text-decoration: none'>" . $row['news_name'] . "</a></p>
+        <p class='opacity-low'>" . $row['news_text'] . "</p>
+</div>
+</div>
+        </div>";
+         }
+         echo "</div>";
+         echo "</article>";
+         mysqli_close($link);
+         ?>
+
 </div>
   <script>
   var slideIndex = 0;
@@ -191,7 +151,6 @@
     setTimeout(showSlides, 6000);
   }
   </script>
-      </article>
 <?php
 include_once 'footer.php';
 ?>

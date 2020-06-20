@@ -29,7 +29,7 @@
                 <h5 class="font-weight-bold text-uppercase mt-3 mb-4" style="color: white">About...</h5>
                 <ul class="list-unstyled" style="color: white">
                     <li>
-                        <a href="#!" style="color: white;text-decoration: none">Company</a>
+                        <a href="TeamMembers.php" style="color: white;text-decoration: none">Company</a>
                     </li>
                     <li>
                         <a href="TeamMembers.php" style="color: white;text-decoration: none">Team</a>
@@ -50,7 +50,7 @@
 
                 <ul class="list-unstyled" style="color: white">
                     <li>
-                        <a href="#!" style="text-decoration: none; color:white;">Vacancies</a>
+                        <a href="vvShow.php" style="text-decoration: none; color:white;">Vacancies</a>
                     </li>
                     <li>
                         <a href="https://www.youtube.com/watch?v=sSajfM1PIb8" style="text-decoration: none; color:white;">Tutorials</a>
