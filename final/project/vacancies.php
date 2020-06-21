@@ -4,8 +4,6 @@ include "vacancies.php";
 include_once 'vvShow.php';
 
 $vvv = new vvShow();
-
-$vacan = $vvv->choose($_COOKIE['Vacancy']['information']);
 ?>
 !DOCTYPE html>
 <html lang="en">
@@ -21,6 +19,4 @@ $vacan = $vvv->choose($_COOKIE['Vacancy']['information']);
 </head>
 <body>
 <h1 class = "display-3" style="text-align: center;padding-bottom: 10px; margin-top: 20px">Open vacancies in shop</h1>\
-<p><?php echo $vacan->getPosition()?></p>
-<p><?php echo $vacan->getSalary()?></p>
-<p><?php echo $vacan->getDescription()?></p>
+<div><?php echo $vvv->toString()?></div>

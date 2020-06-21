@@ -1,10 +1,11 @@
 <?php
-include_once 'Bakkery.php';
+include_once 'header.php';
 session_start();
 
 $status=" ";
+
+if(!empty($_SESSION["shopping_cart"])) {
 if (isset($_POST['action']) && $_POST['action']=="delete"){
-    if(!empty($_SESSION["shopping_cart"])) {
         foreach($_SESSION["shopping_cart"] as $key => $value) {
             if($_POST["id"] == $key){
                 unset($_SESSION["shopping_cart"][$key]);
@@ -19,8 +20,8 @@ if (isset($_POST['action']) && $_POST['action']=="delete"){
 
 if (isset($_POST['action']) && $_POST['action']=="change"){
     foreach($_SESSION["shopping_cart"] as &$value){
-        if($value['name'] === $_POST["name"]){
-            $value['quantity'] = $_POST["quantity"];
+        if($value['id'] === $_POST["id"]){
+            $value['quantity'] = $_POST["item"];
             break;
         }
     }
@@ -35,43 +36,23 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
     <link type="text/css" href="CSS/registration.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-    <script type="text/javascript">
-            $(document).ready(function () {
-
-                $('#pay').click(function() {
-                    event.preventDefault();
-                        var full_name = $('#full_name').val();
-                        var email = $('#email').val();
-                        var tel_num = $('#number').val();
-                        var address = $('#address').val();
-                        var cost = $('#cost').val();
-                        $.ajax({
-                            type: 'POST',
-                            url: 'reg.php',
-                            data:{full_name:full_name, email:email, tel_num:tel_num, address:address,cost:cost},
-                            success: function (data) {
-                              window.location.href = 'pay1.php';
-                            },
-                            error: function (data) {
-                                Swal.fire(
-                                    'ERRORS!',
-                                    data,
-                                    'error'
-                                )
-                            }
-                        });
-                    });
-                });
-    </script>
 </head>
 <body>
+<?php
+$inform = "Hello";
+setcookie("Inform",$inform,time()+10,"/");
+?>
+<?php
+if(isset($_COOKIE['inform'])){
+    echo $inform;
+}
+?>
 <div class="cart">
     <?php
     if(isset($_SESSION["shopping_cart"])){
         $total_price = 0;
         ?>
         <div class="basket">
-
         <table class="table">
             <tbody>
             <tr>
@@ -93,22 +74,23 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                     </td>
                     <td>
                         <form method='post' action=''>
-                            <input type='hidden' name='name' value="<?php echo $product["name"]; ?>" />
+                            <input type='hidden' name='id' value="<?php echo $product["id"]; ?>" />
                             <input type='hidden' name='action' value="change"/>
-                            <select name='quantity' class='quantity' onChange="this.form.submit()">
-                                <option <?php if($product["quantity"]==1)?>
-                                    value="1">1</option>
-                                <option <?php if($product["quantity"]==2)?>
-                                    value="2">2</option>
-                                <option <?php if($product["quantity"]==3)?>
-                                    value="3">3</option>
-                                <option <?php if($product["quantity"]==4)?>
-                                    value="4">4</option>
-                                <option <?php if($product["quantity"]==5)?>
-                                    value="5">5</option>
-                                <option <?php if($product["quantity"]==6)?>
-                                        value="6">6</option>
-                            </select>
+                            <form name='quantity' class='quantity' onChange="this.form.submit()">
+                                <?php
+                                $product['quantity'] = isset($_POST['item']) ? $_POST['item'] : 1;
+                                if(isset($_POST['increase'])){
+                                    $product['quantity'] += 1;
+                                }
+
+                                     if (isset($_POST['decrease'])) {
+                                         $product['quantity'] -= 1;
+                                 }
+                                ?>
+                                <button name='increase' class="increase">+</button>
+                                <input type='text' size='1' name='item' maxlength="1"  value='<?= $product['quantity']; ?>'/>
+                                <button name='decrease' class="decrease">-</button>
+                            </form>
                         </form>
                     </td>
                     <td><?php echo $product["price"]."tg" ?></td>
@@ -124,26 +106,8 @@ if (isset($_POST['action']) && $_POST['action']=="change"){
                 </td>
             </tr>
             </tbody>
+            <a href = "registration.php" style="text-decoration: none"><input type='submit' id = 'pay' name = 'submit' style='display: block' value='Order>>'></a>
         </table>
-            <form class='form'>
-                <div class='f' style='float: left;margin-left: 25px'>
-                    <input class='input' type='text' id = 'full_name' name='full_name' placeholder='Full Name'>
-                    <input class='input'  type='email' id='email' name='email' placeholder='Email'>
-                    <input class='input' type='text' id = 'address' name='address' placeholder='Street/house/apartment'>
-                    <input class='input' type='text' id = 'number' name='number' placeholder= '+7 XXX-XXX-XX-XX'>
-                    <input class='input' type='number'  id = 'cost' name = 'cost' value='<?php echo $total_price?>'>
-                    <input type='checkbox' id='variant' name='variant' value='Card'>
-                    <label for='variant'> By card</label>
-                    <input type='checkbox' id='variant1' name='variant2' value='Cash'>
-                    <label for='variant1'>Сash on delivery</label>
-                    <div class = 'cartochka' style="display: none">
-                    <input class="input" type="text" id = 'card' placeholder="0000-0000-0000-0000-0000" style="display: none">
-                    <input class ='input' type="text" id = 'cv' placeholder="CCV">
-                    <input class ='input' type="text" id = 'data' placeholder="MM/YY">
-                    </div>
-                    <input type='submit' id = 'pay' name = 'submit' style='display: block' value='BUY'>
-                </div>
-            </form>
         </div>
         <?php
     }else{

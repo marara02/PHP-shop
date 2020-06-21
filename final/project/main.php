@@ -1,5 +1,8 @@
+<?php
+include "language.php";
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <head>
 	<title>onlineshop.kz</title>
@@ -36,31 +39,37 @@
 </head>
 <header>
     <div class="topnav">
-        <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"> Home</p></button>
-  <div class="dropdowns">
+        <button class="home" onclick="homeFunction()"><img src="shop.png" class="animation" align="left" width="25"><p style="font-size:185%"><?php echo $lang['home']?></p></button>
+        <div class="dropdowns">
     <div id = "lists">
         <button class="droppp"
-        ><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
+        ><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext" ><?php echo $lang['catalog'] ?></p></button></div>
          <div class="dropdown-contents">
-             <a href="drink.php"><img src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px">Mixed</a>
-      <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
-      <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
-      <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
-      <a href="Fruits.php"><img src ="image/fruit.png" alt ="fruit" width ="15px" height ="15px">Fruits</a>
-      <a href="Vegetables.php"><img src ="image/vegan.png" alt ="Vegetables" width ="15px" height ="15px">Vegetables</a>
-      <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
+             <a href="drink.php"><img src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px"><?php echo $lang['mixed']?></a>
+      <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px"><?php echo $lang['product_1']?></a>
+      <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px"><?php echo $lang['product_2']?></a>
+      <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px"><?php echo $lang['product_3']?></a>
+      <a href="Fruits.php"><img src ="image/fruit.png" alt ="fruit" width ="15px" height ="15px"><?php echo $lang['product_4']?></a>
+      <a href="Vegetables.php"><img src ="image/vegan.png" alt ="Vegetables" width ="15px" height ="15px"><?php echo $lang['product_5']?></a>
+      <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px"><?php echo $lang['product_6']?></a>
     </div>
 </div>
   <div class="dropdowns">
     <div id = "lists">
-        <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
+        <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"><?php echo $lang['contacts'] ?></p></button></div>
            <div class="dropdown-contents">
-       <a href="#"><p>Email:onlineshop@mail.ru</p></a>
-       <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
+       <a href="#"><p><?php echo $lang['email']?>:onlineshop@mail.ru</p></a>
+       <a href="#"><p><?php echo $lang['number']?>:+7(777)-777-77-77</p></a>
     </div>
 </div>
+        <?php
+        $count = isset($_COOKIE['count']) ? $_COOKIE['count']:0;
+        $count++;
+        setcookie("count",$count);
+        echo "<p id = 'visit'>Visited:{$count}</p>";
+        ?>
         <form method="post" action="check.php">
-            <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
+            <input class="search" type = "text" style ="float:right;" name="search" placeholder="<?php echo $lang['search']?>">
             <input  type = "submit" class="sub" name = "submit" value ="&#128270;">
         </form>
         <div><a href="homepage.php" title="home page"><img src="image/homepage.png" class="homeimg"></a></div>
@@ -72,13 +81,7 @@
 <!--<hr style="color: black;">-->
 </header>
 <body>
-<!--<form>
-    <select name="lang">
-        <option value="en"<?php if( $_COOKIE["language"] == "en" ) { echo " selected"; } ?>>En</option>
-        <option value="ru"<?php if( $_COOKIE["language"] == "ru" ) { echo " selected"; } ?>>Ru</option>
-    </select>
-    <input type="submit" value="Select Language">
-</form>-->
+<a href="main.php?lang=en"><?php echo $lang['lang_en']?></a>|<a href = "main.php?lang=ru"><?php echo $lang['lang_ru']?></a>
 <div class="media-body">
 <div class="main">
   <div class="slideshow-container" style="margin-top:15px;
@@ -108,12 +111,16 @@
 
          <?php
          include_once 'database/authorization.php';
-
-         $result = mysqli_query($link,"SELECT * FROM `news` LIMIT 6");
-         echo "<article>";
-         echo "<div class='gallery-image'>";
-         while($row = mysqli_fetch_assoc($result)) {
-             echo "
+         try {
+             $result = mysqli_query($link, "SELECT * FROM `news` LIMIT 6");
+         }
+         catch (Exception $exception){   ///All exception required
+             echo "Some troubles:".$exception->getMessage();
+             }
+             echo "<article>";
+             echo "<div class='gallery-image'>";
+             while ($row = mysqli_fetch_assoc($result)) {
+                 echo "
         <div class = 'img-box'>
         <img src=" . $row['img'] . "/>
         <div class='transparent-box'>
@@ -123,9 +130,9 @@
 </div>
 </div>
         </div>";
-         }
-         echo "</div>";
-         echo "</article>";
+             }
+             echo "</div>";
+             echo "</article>";
          mysqli_close($link);
          ?>
 
@@ -151,6 +158,7 @@
     setTimeout(showSlides, 6000);
   }
   </script>
+
 <?php
 include_once 'footer.php';
 ?>

@@ -57,7 +57,6 @@
 include_once 'database/authorization.php';
 session_start();
 
-
 if (isset($_POST['id']) && $_POST['id']!=" "){
     $id = mysqli_real_escape_string($link, $_POST['id']);
     $query = "SELECT * FROM product WHERE product_id = ?";
@@ -77,8 +76,7 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
         $id=>array(
             'name'=>$name,
             'id'=>$id,
-            'price'=>$price,
-            'quantity'=>1)
+            'price'=>$price)
     );
 
     if(empty($_SESSION["shopping_cart"])) {
@@ -109,7 +107,7 @@ while($row = mysqli_fetch_assoc($result)){
                 <div class='name'>".$row['product_name']."</div>
                 <div class='imageAll' style=' text-align: center;padding-left: 5px;padding-right: 5px;'><img src='".$row['img']."' width='100%' height='80%'></div>
                 <div class='price'>".$row['price']."tg</div>
-                <button type='submit' class='buy'>Add to cart</button>
+                <button type='submit' name='add' class='buy'>Add to cart</button>
             </form>
         </div>
         ";
