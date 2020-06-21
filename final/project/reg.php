@@ -1,33 +1,24 @@
 <?php
-include_once('database/authorization.php');
-
-
+require_once('database/config.php');
+?>
+<?php
 if(isset($_POST)) {
-    $full_name = $_POST['full_name'];
-    $email = $_POST['email'];
-    $address = $_POST['address'];
-    $tel_num = '10000';
-    $cost = $_POST['cost'];
-    try{
-    $sql = "INSERT INTO `orders`( `Full_name`, `email`, `address`, `telnum` ,`Total_price`) VALUES (?,?,?,?,?)";
-    $stmt = $link->prepare($sql);
-    $stmt->bind_param("ssssi",$full_name,$email,$address,$tel_num,$cost);
-    $result = $stmt->execute();
-    $stmt->close();
+    $u_fullname = $_POST['u_fullname'];
+    $u_email = $_POST['u_email'];
+    $u_address = $_POST['u_address'];
+    $u_telnum = $_POST['u_telnum'];
+    $u_card_n = $_POST['u_card_n'];
+    $u_card_e = $_POST['u_card_e'];
+    $u_card_c = $_POST['u_card_c'];
+    $sql="INSERT INTO user (`u_fullname`,`u_email`,`u_address`,`u_telnum`,`u_card_n`,`u_card_e`,`u_card_c`) VALUES(?,?,?,?,?,?,?)";
+    $stmtinsert = $db->prepare($sql);
+    $result = $stmtinsert->execute([$u_fullname, $u_email, $u_address, $u_telnum,$u_card_n,$u_card_e,$u_card_c]);
     if ($result) {
         echo 'Successfully saved';
     } else {
         echo 'There were errors while saving the data.';
     }
 }
-catch (Exception $exception){
-        print "An Exception occurred. Message:" .$exception->getMessage();
-    }
-    catch (Error $error){
-        print "An error occurred. Message:".$error->getMessage();
-    }
-}
 else{
     echo 'No data';
 }
-?>
