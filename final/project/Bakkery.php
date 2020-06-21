@@ -17,7 +17,6 @@
     <link rel="stylesheet" type="text/css" href="CSS/header.css">
     <script type="text/javascript" src="functions.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-
 </head>
 <body style="background-color:white">
 <header>
@@ -27,33 +26,29 @@
             <div id = "lists">
                 <button class="droppp"><img class="img" src ="image/line.png" alt="left" width ="25" height="25"><p class="catalogtext">Catalog</p></button></div>
             <div class="dropdown-contents">
-                <a href = "drink.php">Mixed</a>
-                <a href="b2.php"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
-                <a href="meal.php"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
-                <a href="SeaFood.php"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
-                <a href="Fruits.php"><img src ="image/fruit.png" alt ="fruit" width ="15px" height ="15px">Fruits</a>
-                <a href="Vegetables.php"><img src ="image/vegan.png" alt ="Vegetables" width ="15px" height ="15px">Vegetables</a>
-                <a href="Drinks.php"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
+                <a href = "drink.php" style="font-family: 'Bebas Neue', cursive"><img src = "https://img.pngio.com/arrows-mix-mixed-random-shuffle-icon-mixed-png-512_512.png" width="15px" height="15px">Mixed</a>
+                <a href="b2.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/cupi.png" alt ="cupi" width ="15px" height ="15px">Flour products</a>
+                <a href="meal.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/meal.png" alt ="meal" width ="15px" height ="15px">Meat</a>
+                <a href="SeaFood.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/fish.png" alt ="fish" width ="15px" height ="15px">SeaFood</a>
+                <a href="Fruits.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/fruit.png" alt ="fruit" width ="15px" height ="15px">Fruits</a>
+                <a href="Vegetables.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/vegan.png" alt ="Vegetables" width ="15px" height ="15px">Vegetables</a>
+                <a href="Drinks.php" style="font-family: 'Bebas Neue', cursive"><img src ="image/drink.png" alt ="drinks" width ="15px" height ="15px">Drinks</a>
             </div>
         </div>
         <div class="dropdowns">
             <div id = "lists">
                 <button class="contacts" onclick="carsFunction()"><p class="contacttext"><img src="image/phone.png" width="25" height="25" class="contactimg"> Contacts</p></button></div>
             <div class="dropdown-contents">
-                <a href="#"><p>Email:onlineshop@mail.ru</p></a>
-                <a href="#"><p>Phone number:+7(777)-777-77-77</p></a>
+                <a href="https://mail.google.com/mail/u/0/#inbox" style="font-family: 'Bebas Neue', cursive"><p>Email:onlineshop@mail.ru</p></a>
+                <a href="https://web.whatsapp.com/" style="font-family: 'Bebas Neue', cursive"><p>Phone number:+7(777)-777-77-77</p></a>
             </div>
         </div>
         <form method="post" action="check.php">
             <input class="search" type = "text" style ="float:right;" name="search" placeholder="Search">
             <button  type = "submit" class="sub" name = "submit" >&#128270;</button>
         </form>
-        <div><a href="basket.php" title="Basket"><img src="image/basket.png" class="basimg"></a></div>
+        <div><a href="basket.php" title="Cart"><img src="image/basket.png" class="basimg"></a></div>
     </div>
 </header>
 <hr style="color: black;">
-</header>
-<body>
-</body>
-</body>
 </html>
