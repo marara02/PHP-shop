@@ -14,9 +14,9 @@ if(isset($_POST)) {
     $stmtinsert = $db->prepare($sql);
     $result = $stmtinsert->execute([$u_fullname, $u_email, $u_address, $u_telnum,$u_card_n,$u_card_e,$u_card_c]);
     if ($result) {
-        echo 'Successfully saved';
+        echo 'Your order will come as soon as possible';
     } else {
-        echo 'There were errors while saving the data.';
+        echo 'Something went wrong;(';
     }
 }
 else{
