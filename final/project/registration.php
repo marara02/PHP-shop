@@ -1,28 +1,15 @@
 <?php
-
 require_once('database/authorization.php');
 include_once ('header.php')
 ?>
-
-
 <div xmlns="http://www.w3.org/1999/html">
     <link rel="stylesheet" type="text/css" href="CSS/registration.css">
-
-
-
 </div>
-
 <body>
-
-
 <div class="main">
-
     <form class="form">
-
         <div class="f">
-
             <h1>User information form</h1>
-
             <input class="input" type="text" id="u_fullname" name="u_fullname" placeholder="Full Name" required>
             <input class="input"  type="Email" id="u_email" name="u_email" placeholder="Email" required>
             <input class="input" type="tel" name="u_telnum" id="u_telnum" placeholder="8(XXX)-XXX-XX-XX" minlength="11" maxlength="11" required>
@@ -78,6 +65,9 @@ include_once ('header.php')
 include_once 'footer.php';
 ?>
 
+
 </body>
+
+
 
 </html>

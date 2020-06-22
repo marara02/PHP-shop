@@ -1,28 +1,5 @@
 <?php
 include_once 'database/authorization.php';
-
-$result = mysqli_query($link,"SELECT * FROM `product`");
-
-while($row = mysqli_fetch_assoc($result)){
-    echo "<div class='wrapper1' style='display: none'>
-    <div class='box1'>
-    <form method='post' action=''>
-    <input type='hidden' name='id' value=".$row['category_id']." />
-    <div class='imageAll' style='float:center'><img src='".$row['img']."' width='80%' height='60%'  /></div>
-    <div class='name'>".$row['product_name']."</div>
-    <div class='price'>$".$row['price']."</div>
-    <button type='submit' class='buy'>Add to cart</button>
-    <span id ='info'></span>
-    <input type = 'text' name = 'name' id ='name' placeholder='Product name'>
-    <input type = 'number' name = 'price' id = 'price' placeholder='Price'>
-    <input type ='number' name ='id' id ='id' placeholder='Product_id'>
-    <input type ='submit' class ='new' style='background-color: orange' value='Change'>
-    </form>
-    </div>
-    </div>";
-    echo $status;
-}
-mysqli_close($link);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,22 +23,41 @@ mysqli_close($link);
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
             integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
             crossorigin="anonymous"></script>
+            <style>
+                #errorMsg{
+                    color: #fff;
+                    font-weight: 700;
+                    padding: 4px 8px;
+                    background-color: rgba(0,0,0,0.5);
+
+                }
+            </style>
     <script>
         $(document).ready(function () {
-        $('.inputsub').click(function () {
-        $.ajax({
-            method:'POST',
-            url:"check1.php",
-            data: {
-                user:$("#user").val(),
-                password:$(".inputsub").val()
-            },
-            accepts: 'application/json; charset=utf-8',
-                success:function (data) {
-                    window.location.href = "mixed1.php";
-                }
-        });
-        });
+            $('.inputsub').click(function () {
+                event.preventDefault();
+                $.ajax({
+                    method:'POST',
+                    url:"check1.php",
+                    data: {
+                        user:$("#user").val(),
+                        pass1:$("#pass1").val()
+                    },
+                    accepts: 'application/json; charset=utf-8',
+                        success:function (data) {
+                            var data = JSON.parse(data);
+                            if(data.msg === "success"){
+                                window.location.href = "mixed1.php";
+                            }
+                            if(data.msg === "error"){
+                                $('#errorMsg').html("Wrong password/login");
+                            }
+                            if(data.msg === "fill"){
+                                $('#errorMsg').html("Not all fields are filled");
+                            }
+                        }
+                });
+            });
         });
     </script>
 </head>
@@ -71,6 +67,7 @@ mysqli_close($link);
             <input class="input"  type="text" id="user" name="user">
             <input class="input" type="password" name="pass1" id="pass1" minlength="8">
             <input class="inputsub" type="submit" name="submit" id="sub" value="Go">
+            <span id="errorMsg"></span>
 </div>
         </div>
     </form>

@@ -76,7 +76,8 @@ if (isset($_POST['id']) && $_POST['id']!=" "){
         $id=>array(
             'name'=>$name,
             'id'=>$id,
-            'price'=>$price)
+            'price'=>$price,
+            'quantity'=>1)
     );
 
     if(empty($_SESSION["shopping_cart"])) {
