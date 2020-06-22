@@ -2,10 +2,10 @@
 -- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Июн 21 2020 г., 19:55
--- Версия сервера: 10.4.11-MariaDB
--- Версия PHP: 7.4.5
+-- Хост: localhost:3306
+-- Время создания: Июн 22 2020 г., 02:17
+-- Версия сервера: 8.0.18
+-- Версия PHP: 7.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,7 +31,7 @@ CREATE TABLE `admins` (
   `admin_id` int(11) NOT NULL,
   `admin_name` varchar(30) NOT NULL,
   `admin_password` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `admins`
@@ -76,7 +76,7 @@ CREATE TABLE `news` (
   `news_name` varchar(50) NOT NULL,
   `news_text` varchar(50) NOT NULL,
   `img` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `news`
@@ -85,10 +85,11 @@ CREATE TABLE `news` (
 INSERT INTO `news` (`news_id`, `news_name`, `news_text`, `img`) VALUES
 (1, 'Bakery products', 'NEW catalog', 'https://images.pexels.com/photos/917302/pexels-photo-917302.jpeg?cs=srgb&dl=silver-fork-and-knife-on-round-plate-with-cupcake-917302.jpg&fm=jpg'),
 (2, 'Natural Products', 'Eco system from villages 180', 'https://images.pexels.com/photos/3772492/pexels-photo-3772492.jpeg?cs=srgb&dl=milk-and-honey-on-wooden-tray-3772492.jpg&fm=jpg'),
-(3, 'Columbia Coffee', 'New cost 1500', 'https://picsum.photos/350/250/?image=431'),
+(3, 'Columbia Coffee', 'New cost 1500', 'https://i.pinimg.com/originals/07/e5/0f/07e50f0b99276f62c13b6df25a765d0c.jpg'),
 (4, 'Sales to fruits and vegetables', '50% of sale', 'image/fff.jpg'),
 (5, 'Aromo tea from India', 'New Cost', 'https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg?cs=srgb&dl=peppermint-tea-on-teacup-1417945.jpg&fm=jpg'),
-(6, 'Switzerland chocolate', 'Minimum cost 450', 'https://images.pexels.com/photos/1022417/pexels-photo-1022417.jpeg?cs=srgb&dl=close-up-photo-of-hershey-s-bars-near-jars-1022417.jpg&fm=jpg');
+(6, 'Switzerland chocolate', 'Minimum cost 450', 'https://images.pexels.com/photos/1022417/pexels-photo-1022417.jpeg?cs=srgb&dl=close-up-photo-of-hershey-s-bars-near-jars-1022417.jpg&fm=jpg'),
+(7, 'Sells', '20% sell for every product', 'https://ic.pics.livejournal.com/galina_s_iherb/73892290/170743/170743_600.jpg');
 
 -- --------------------------------------------------------
 
@@ -124,7 +125,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `product_name`, `price`, `amount`, `category_id`, `img`) VALUES
-(1, 'Red Velvet', 2000, 10, 1, 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2004/1/23/1/ss1d26_red_velvet_cake.jpg.rend.hgtvcom.616.462.suffix/1371584132020.jpeg'),
+(1, 'Red Velvet', 3000, 10, 1, 'https://food.fnr.sndimg.com/content/dam/images/food/fullset/2004/1/23/1/ss1d26_red_velvet_cake.jpg.rend.hgtvcom.616.462.suffix/1371584132020.jpeg'),
 (2, 'Voopie', 3000, 10, 1, 'https://img-global.cpcdn.com/recipes/8b9897d93350ccfe/751x532cq70/shokoladnyi-tort-vupi-pai-ili-bashnia-svobodnogho-padieniia-%D0%BE%D1%81%D0%BD%D0%BE%D0%B2%D0%BD%D0%BE%D0%B5-%D1%84%D0%BE%D1%82%D0%BE-%D1%80%D0%B5%D1%86%D0%B5%D0%BF%D1%82%D0%B0.jpg'),
 (3, 'Japanese Cake', 1500, 10, 1, 'https://chef.tm/public/pics/288/288521_0.jpg'),
 (4, 'Cookies', 500, 10, 1, 'image/cook.jpg'),
@@ -161,7 +162,8 @@ INSERT INTO `product` (`product_id`, `product_name`, `price`, `amount`, `categor
 (35, 'Hot Chocolate', 4500, 7, 6, 'https://images-na.ssl-images-amazon.com/images/I/81ZQ2GHB7%2BL._SX425_.jpg'),
 (36, 'Coffee', 5000, 30, 6, 'https://i5.walmartimages.ca/images/Enlarge/078/971/6000201078971.jpg\r\n'),
 (37, 'Water', 3500, 20, 6, 'https://netstorage-nur.akamaized.net/images/pogudx28tfo00q7lp.jpg?imwidth=900'),
-(38, 'Shake', 5000, 10, 6, 'https://cache.sporter.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/satled-caramel-shake.jpg');
+(38, 'Shake', 5000, 10, 6, 'https://cache.sporter.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/s/a/satled-caramel-shake.jpg'),
+(39, 'cola', 120, 10, 6, 'https://paragondelivery.kz/wp-content/uploads/2018/02/coca-cola-05-min.png');
 
 -- --------------------------------------------------------
 
@@ -174,8 +176,20 @@ CREATE TABLE `user` (
   `u_fullname` varchar(50) NOT NULL,
   `u_address` varchar(255) NOT NULL,
   `u_email` varchar(50) NOT NULL,
-  `u_telnum` varchar(12) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `u_telnum` varchar(50) NOT NULL,
+  `u_card_n` varchar(16) NOT NULL,
+  `u_card_e` varchar(5) NOT NULL,
+  `u_card_c` varchar(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Дамп данных таблицы `user`
+--
+
+INSERT INTO `user` (`user_id`, `u_fullname`, `u_address`, `u_email`, `u_telnum`, `u_card_n`, `u_card_e`, `u_card_c`) VALUES
+(1, 'Bulatuly Nurgissa', 'Rozibaliev 151', 'nurike2001@mail.ru', '87087884518', '6548948946848489', '28/22', '688'),
+(2, 'marzhan dfghj', 'sauran', 'nuralymarzan09@gmail.com', '99999999999', '9999999999999999', '90/09', '999'),
+(3, 'marzhan dfghj', 'sauran', 'nuralymarzan09@gmail.com', '88888888888', '5555555555555555', '88888', '555');
 
 -- --------------------------------------------------------
 
@@ -188,7 +202,7 @@ CREATE TABLE `vacancy` (
   `position` varchar(50) NOT NULL,
   `salary` int(11) NOT NULL,
   `description` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `vacancy`
@@ -273,7 +287,7 @@ ALTER TABLE `catalog`
 -- AUTO_INCREMENT для таблицы `news`
 --
 ALTER TABLE `news`
-  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `news_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT для таблицы `orders`
@@ -285,13 +299,13 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT для таблицы `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `product_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT для таблицы `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT для таблицы `vacancy`
